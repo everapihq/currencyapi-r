@@ -1,0 +1,45 @@
+---
+title: "introduction to currencyapi"
+author: Dominik Kukacka
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+`currencyapi-r` is the official package for accessing currency conversion data from [currencyapi.com](https://currencyapi.com). The API requires a registered API key. The free plan provides 150 free monthly requests. You can register an API key [here](https://app.currencyapi.com/register). [Premium plans](https://currencyapi.com/pricing/) provide access to more requests, more endpoint and access to higher data update rates.
+The full API documentation can be found [here](https://currencyapi.com/docs/)
+
+## Setting up authentication
+
+After registering your API key, set your API key locally by calling the helper function `currencyapi_api_key()` or by manually calling `Sys.setenv(CURRENCYAPI_API_KEY = <key>)`.
+
+## Making your first API request
+
+Call `get_latest_exchange_rates()` to retrieve the most recent exchange rates. By default, `USD` is set as `base_currency`. For API keys related to the free plan, data is updated daily, for premium plans up to minutely.
+
+## Supported Currencies
+
+Call `get_supported_currencies` to retrieve a list of all currencies that are supported by the API. 
+
+## Available Functions
+
+* `get_api_status()` - can be used to check whether the API is available. Requests do not count towards your monthly request volume. Information about your API key are provided. Available in `free & paid` plans
+* `get_latest_exchange_rates()` - provides you with the latest exchange rates. Available in `free & paid` plans.
+* `get_supported_currencies()` - provides a list of all currencies that are supported by the API. Available in `free & paid` plans.
+* `get_historical_exchange_rates()` - provides exchange rate for a historical exchange rates for a given date. Available in `free & paid` plans.
+* `convert_exchange_rates()` - Converts a given amount to another currency. Available in `paid` plans.
+* `get_date_range_historical_exchange_rates()` - provides exchange rates for a given time frame.  Available in `paid` plans.
+
+Please read our [API documentation](https://currencyapi.com/docs/) for all information.
